@@ -3,11 +3,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Setting extends Model
+class MenuItem extends Model
 {
     protected $fillable = [
-        'key',
-        'value',
+        'label',
+        'url',
+        'order',
+        'is_active',
     ];
-
 }

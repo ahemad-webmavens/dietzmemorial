@@ -1,12 +1,46 @@
 <?php
 
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\GraniteColorController;
+use App\Http\Controllers\LocationController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ServiceController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+
+    $page = \App\Models\Page::where('slug', 'home')
+        ->where('is_active', true)
+        ->firstOrFail();
+
+    return view('pages.show', [
+        'page'           => $page,
+        'seoTitle'       => $page->meta_title ?: $page->title,
+        'seoDescription' => $page->meta_description,
+        'seoImage'       => $page->hero_image,
+    ]);
+
 });
+
+Route::get('/services', [ServiceController::class, 'index']);
+Route::get('/services/{slug}', [ServiceController::class, 'show']);
+
+Route::get('/blog', [BlogController::class, 'index']);
+Route::get('/blog/{slug}', [BlogController::class, 'show']);
+
+Route::get('/locations', [LocationController::class, 'index']);
+Route::get('/locations/{slug}', [LocationController::class, 'show']);
+
+Route::get('/gallery', [GalleryController::class, 'index']);
+
+Route::get('/granite-colors', [GraniteColorController::class, 'index']);
+
+Route::get('/contact', [ContactController::class, 'index']);
+Route::post('/contact', [ContactController::class, 'store'])
+    ->name('contact.store');
 
 Route::get('/{slug}', [PageController::class, 'show']);
 
