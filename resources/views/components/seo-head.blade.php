@@ -1,5 +1,5 @@
 <title>
-    {{ $title ?? setting('site_name') }}
+    {{ setting('site_name') ?? 'Dietz Memorial' }}
 </title>
 
 <meta

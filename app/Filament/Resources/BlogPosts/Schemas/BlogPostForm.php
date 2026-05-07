@@ -33,7 +33,12 @@ class BlogPostForm
                     ->image()
                     ->disk('public')
                     ->directory('blog')
-                    ->visibility('public'),
+                    ->visibility('public')
+                    ->imageEditor()
+                    ->imageResizeMode('cover')
+                    ->imageCropAspectRatio('16:9')
+                    ->imageResizeTargetWidth('1600')
+                    ->imageResizeTargetHeight('900'),
 
                 DateTimePicker::make('published_at')
                     ->label('Publish Date'),

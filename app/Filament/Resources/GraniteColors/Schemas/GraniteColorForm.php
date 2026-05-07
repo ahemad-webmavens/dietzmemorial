@@ -20,7 +20,12 @@ class GraniteColorForm
                     ->image()
                     ->disk('public')
                     ->directory('granite-colors')
-                    ->visibility('public'),
+                    ->visibility('public')
+                    ->imageEditor()
+                    ->imageResizeMode('cover')
+                    ->imageCropAspectRatio('16:9')
+                    ->imageResizeTargetWidth('1600')
+                    ->imageResizeTargetHeight('900'),
 
                 Textarea::make('description')
                     ->rows(3),

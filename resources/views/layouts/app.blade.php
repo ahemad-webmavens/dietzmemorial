@@ -10,6 +10,8 @@
     :image="$seoImage ?? null"
 />
 
+    <style>html { scroll-behavior: smooth; }</style>
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-white text-gray-800 font-sans">
@@ -88,7 +90,7 @@
     @yield('content')
 </main>
 
-<footer class="bg-[#3d5030] text-white/85 pt-12 pb-6 mt-16">
+<footer class="bg-[#3d5030] text-white/85 pt-12 pb-6">
     <div class="max-w-7xl mx-auto px-4">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-10">
 
@@ -149,6 +151,33 @@
 <script>
     document.getElementById('hamburger').addEventListener('click', function () {
         document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+
+    const header = document.querySelector('header');
+    let lastScrollY = window.scrollY;
+    let ticking = false;
+
+    header.style.position = 'sticky';
+    header.style.top = '0';
+    header.style.zIndex = '50';
+    header.style.transition = 'transform 0.3s ease';
+
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                const currentScrollY = window.scrollY;
+
+                if (currentScrollY < lastScrollY) {
+                    header.style.transform = 'translateY(0)';
+                } else if (currentScrollY > 80) {
+                    header.style.transform = 'translateY(-100%)';
+                }
+
+                lastScrollY = currentScrollY;
+                ticking = false;
+            });
+            ticking = true;
+        }
     });
 </script>
 

@@ -14,4 +14,10 @@ class Page extends Model
         'hero_image',
         'is_active',
     ];
+
+    public function sections()
+    {
+        return $this->hasMany(PageSection::class)
+            ->orderBy('order');
+    }
 }

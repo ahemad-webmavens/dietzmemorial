@@ -12,7 +12,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
 
-    $page = \App\Models\Page::where('slug', 'home')
+    $page = \App\Models\Page::with([
+        'sections.items',
+    ])
+        ->where('slug', 'home')
         ->where('is_active', true)
         ->firstOrFail();
 

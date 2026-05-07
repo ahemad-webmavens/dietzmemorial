@@ -20,7 +20,12 @@ class GalleryItemForm
                     ->required()
                     ->disk('public')
                     ->directory('gallery')
-                    ->visibility('public'),
+                    ->visibility('public')
+                    ->imageEditor()
+                    ->imageResizeMode('cover')
+                    ->imageCropAspectRatio('16:9')
+                    ->imageResizeTargetWidth('1600')
+                    ->imageResizeTargetHeight('900'),
 
                 Select::make('category')
                     ->required()

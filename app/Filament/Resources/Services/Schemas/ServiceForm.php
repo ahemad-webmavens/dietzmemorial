@@ -27,7 +27,12 @@ class ServiceForm
                     ->image()
                     ->disk('public')
                     ->directory('services')
-                    ->visibility('public'),
+                    ->visibility('public')
+                    ->imageEditor()
+                    ->imageResizeMode('cover')
+                    ->imageCropAspectRatio('16:9')
+                    ->imageResizeTargetWidth('1600')
+                    ->imageResizeTargetHeight('900'),
 
                 TextInput::make('meta_title'),
 
