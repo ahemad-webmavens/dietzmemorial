@@ -5,6 +5,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\GraniteColorController;
 use App\Http\Controllers\LocationController;
+use App\Http\Controllers\MemorialGuideController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ServiceController;
@@ -44,6 +45,9 @@ Route::get('/granite-colors', [GraniteColorController::class, 'index']);
 Route::get('/contact', [ContactController::class, 'index']);
 Route::post('/contact', [ContactController::class, 'store'])
     ->name('contact.store');
+
+Route::get('/memorial-design-guide/{slug}', [MemorialGuideController::class, 'show'])
+    ->where('slug', '.*');
 
 Route::get('/{slug}', [PageController::class, 'show']);
 

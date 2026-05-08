@@ -104,37 +104,38 @@
 
     </div>
 
-    {{-- Modal --}}
-    <div
-        x-show="open"
-        x-cloak
-        x-transition
-        style="position: fixed; inset: 0; background: rgba(0,0,0,0.85); display: flex; align-items: center; justify-content: center; z-index: 50; padding: 24px;"
-    >
-        <div style="position: relative; max-width: 900px; width: 100%;">
+{{-- Modal --}}
+        <div
+            x-show="open"
+            x-cloak
+            x-transition
+            @click.self="open = false"
+            style="position: fixed; inset: 0; background: rgba(0,0,0,0.85); display: flex; align-items: center; justify-content: center; z-index: 50; padding: 24px;"
+        >
+    <div style="position: relative; max-width: 900px; width: 100%; margin: 0 auto; display: flex; flex-direction: column; align-items: center;">
 
-            {{-- Close button --}}
-            <button
-                @click="open = false"
-                style="position: absolute; top: 10px; right: 10px; z-index: 100; background: rgba(0,0,0,0.6); border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 1.4rem; color: white; cursor: pointer; display: flex; align-items: center; justify-content: center;"
-            >
-                ✕
-            </button>
+        {{-- Close button --}}
+        <button
+            @click="open = false"
+            style="position: absolute; top: -16px; right: -16px; z-index: 100; background: rgba(0,0,0,0.6); border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 1.4rem; color: white; cursor: pointer; display: flex; align-items: center; justify-content: center;"
+        >
+            ✕
+        </button>
 
-            {{-- Image --}}
-            <img
-                :src="selectedImage"
-                style="width: 100%; max-height: 85vh; object-fit: contain; border-radius: 8px; display: block;"
-            >
+        {{-- Image --}}
+        <img
+            :src="selectedImage"
+            style="width: 100%; max-height: 85vh; object-fit: contain; border-radius: 8px; display: block; margin: 0 auto;"
+        >
 
-            {{-- Title --}}
-            <p
-                x-text="selectedTitle"
-                style="color: #c8a96e; margin-top: 16px; text-align: center; font-size: 1.1rem; font-family: serif; font-weight: 600; letter-spacing: 0.05em;"
-            ></p>
+        {{-- Title --}}
+        <p
+            x-text="selectedTitle"
+            style="color: #c8a96e; margin-top: 16px; text-align: center; font-size: 1.1rem; font-family: serif; font-weight: 600; letter-spacing: 0.05em; width: 100%;"
+        ></p>
 
-        </div>
     </div>
+</div>
 
 </div>
 
