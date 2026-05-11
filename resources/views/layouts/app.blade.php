@@ -129,18 +129,18 @@
 
                             @foreach ($memorialGuideMenu as $guide)
                                 <a href="{{ url('/memorial-design-guide/' . $guide->slug) }}"
-                                    class="block px-8 py-3 text-white/80 text-sm hover:text-[#c8a96e] border-b border-white/5 transition-colors">
+                                    class="block font-semibold uppercase px-8 py-3 text-white/80 text-sm hover:text-[#c8a96e] border-b border-white/5 transition-colors">
                                     {{ $guide->title }}
                                 </a>
                             @endforeach
 
                             <a href="{{ url('/granite-colors') }}"
-                                class="block px-8 py-3 text-white/80 text-sm hover:text-[#c8a96e] border-b border-white/5 transition-colors">
+                                class="block font-semibold uppercase px-8 py-3 text-white/80 text-sm hover:text-[#c8a96e] border-b border-white/5 transition-colors">
                                 Colors
                             </a>
 
                             <a href="{{ url('/services/bronze-memorials') }}"
-                                class="block px-8 py-3 text-white/80 text-sm hover:text-[#c8a96e] border-b border-white/5 transition-colors">
+                                class="block font-semibold uppercase px-8 py-3 text-white/80 text-sm hover:text-[#c8a96e] border-b border-white/5 transition-colors">
                                 Bronze Memorials
                             </a>
 
@@ -169,7 +169,7 @@
 
     <footer class="bg-[#3d5030] text-white/85 pt-12 pb-6">
         <div class="max-w-7xl mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
 
                 {{-- Brand --}}
                 <div>
@@ -187,7 +187,7 @@
 
                 {{-- Services --}}
                 <div>
-                    <h4 class="text-[#c8a96e] text-xs font-semibold uppercase tracking-widest mb-4">Services</h4>
+                    <h4 class="text-[#c8a96e] text-xs font-semibold uppercase tracking-widest mb-3">Services</h4>
                     <a href="/services/granite-memorials"
                         class="block text-white/75 text-sm leading-loose hover:text-white transition-colors">Granite
                         Memorials</a>
@@ -206,7 +206,7 @@
                 </div>
 
                 <div>
-                    <h4 class="text-[#c8a96e] text-xs font-semibold uppercase tracking-widest mb-4">Waco — HQ</h4>
+                    <h4 class="text-[#c8a96e] text-xs font-semibold uppercase tracking-widest mb-3">Waco — HQ</h4>
                     <p class="text-white/70 text-sm leading-relaxed">500 LaSalle Ave<br>Waco, TX 76706</p>
                     <a href="tel:{{ setting('waco_phone') }}"
                         class="block text-white/75 text-sm mt-1 hover:text-white transition-colors">{{ setting('waco_phone') }}</a>
@@ -214,7 +214,7 @@
                         class="block text-white/75 text-sm hover:text-white transition-colors">{{ setting('email', 'sales@dietzmemorial.com') }}</a>
                     <p class="text-white/60 text-xs mt-1">Mon–Fri: 9:00 AM – 5:00 PM</p>
 
-                    <h4 class="text-[#c8a96e] text-xs font-semibold uppercase tracking-widest mt-6 mb-4">New Braunfels
+                    <h4 class="text-[#c8a96e] text-xs font-semibold uppercase tracking-widest mt-6 mb-3">New Braunfels
                     </h4>
                     <p class="text-white/70 text-sm leading-relaxed">628 S. Business IH 35<br>New Braunfels, TX 78130
                     </p>
@@ -223,7 +223,7 @@
                 </div>
 
                 <div>
-                    <h4 class="text-[#c8a96e] text-xs font-semibold uppercase tracking-widest mb-4">Quick Links</h4>
+                    <h4 class="text-[#c8a96e] text-xs font-semibold uppercase tracking-widest mb-3">Quick Links</h4>
                     @foreach ($menuItems as $item)
                         <a href="{{ url($item->url) }}"
                             class="block text-white/75 text-sm leading-loose hover:text-white transition-colors">{{ $item->label }}</a>

@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\GalleryItem;
+use App\Models\Page;
 
 class GalleryController extends Controller
 {
@@ -9,6 +10,14 @@ class GalleryController extends Controller
     {
         $galleryItems = GalleryItem::orderBy('order')->get();
 
-        return view('gallery.index', compact('galleryItems'));
+        $page = Page::where('slug', 'gallery')->where('is_active', true)->first();
+
+        return view('gallery.index', [
+            'galleryItems'   => $galleryItems,
+            'seoTitle'       => $page?->meta_title ?: 'Gallery | Dietz Memorial',
+            'seoDescription' => $page?->meta_description ?: 'Explore our gallery.',
+            'seoImage'       => null,
+        ]);
+
     }
 }

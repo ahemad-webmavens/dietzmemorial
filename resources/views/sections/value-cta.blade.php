@@ -6,7 +6,7 @@
 
 @if($item)
 
-<section class="relative py-28 overflow-hidden bg-[#2f3d24]">
+<section class="relative py-12 md:py-16 lg:py-20 overflow-hidden bg-[#2f3d24]">
 
     {{-- Background Image --}}
     @if($item->image)
@@ -30,7 +30,7 @@
             Why Families Choose Dietz Memorial
         </p>
 
-        <h2 class="text-4xl md:text-6xl font-light leading-tight mb-8">
+        <h2 class="text-2xl md:text-4xl font-light leading-tight mb-8">
             {{ $item->title }}
         </h2>
 

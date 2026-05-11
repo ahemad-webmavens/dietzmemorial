@@ -2,7 +2,7 @@
     $locations = \App\Models\Location::where('is_active', true)->get();
 @endphp
 
-<section class="py-24 bg-[#f8f6f1]">
+<section class="py-12 md:py-16 lg:py-20 bg-[#f8f6f1]">
 
     <div class="max-w-7xl mx-auto px-6">
 
@@ -13,7 +13,7 @@
                 Our Locations
             </p>
 
-            <h2 class="text-4xl md:text-5xl font-light text-[#2f3d24] mb-6">
+            <h2 class="text-2xl md:text-4xl font-light text-[#2f3d24] mb-6">
                 Proudly Serving Families Across Central Texas
             </h2>
 

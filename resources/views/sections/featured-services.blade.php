@@ -2,15 +2,15 @@
     $items = $section->items->where('is_active', true);
 @endphp
 
-<section class="py-20 bg-[#CAD0B6]">
+<section class="py-12 md:py-16 lg:py-20 bg-[#CAD0B6]">
     <div class="max-w-7xl mx-auto px-6">
 
         {{-- Heading --}}
-        <div class="text-center mb-14">
+    <div class="text-center mb-8 md:mb-10 lg:mb-10">
             <p class="uppercase tracking-[0.25em] text-sm text-[#4a5e3a] mb-3">
                 Our Services
             </p>
-            <h2 class="text-4xl md:text-5xl font-light text-[#2f3d24]">
+            <h2 class="text-2xl md:text-4xl font-light text-[#2f3d24]">
                 Crafted Memorials With Meaning
             </h2>
         </div>
@@ -22,7 +22,7 @@
 
                 <a
                     href="{{ url($item->button_link) }}"
-                    class="group bg-white shadow hover:shadow-2xl transition duration-500 overflow-hidden flex flex-col"
+                    class="group bg-white rounded-2xl shadow hover:shadow-2xl transition duration-500 overflow-hidden flex flex-col"
                 >
 
                     {{-- Image --}}

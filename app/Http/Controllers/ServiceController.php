@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Models\Page;
 use App\Models\Service;
 
 class ServiceController extends Controller
@@ -11,7 +12,14 @@ class ServiceController extends Controller
             ->orderBy('order')
             ->get();
 
-        return view('services.index', compact('services'));
+        $page = Page::where('slug', 'services')->where('is_active', true)->first();
+
+        return view('services.index', [
+            'services'       => $services,
+            'seoTitle'       => $page?->meta_title ?: 'Our Services | ' . (setting('site_name') ?? 'Dietz Memorial'),
+            'seoDescription' => $page?->meta_description ?: 'Explore our full range of memorial services.',
+            'seoImage'       => $page?->hero_image ?? null,
+        ]);
     }
 
     public function show($slug)

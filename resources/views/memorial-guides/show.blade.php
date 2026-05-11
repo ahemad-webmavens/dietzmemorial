@@ -37,7 +37,7 @@
     </div>
 
 </div>
-<section class="bg-[#f8f6f1] py-16">
+<section class="bg-[#f8f6f1] py-12 md:py-16 lg:py-20">
     <div class="max-w-7xl mx-auto px-6">
         <div class="grid grid-cols-1 lg:grid-cols-4 gap-12">
 

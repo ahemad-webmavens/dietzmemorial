@@ -2,16 +2,16 @@
     $items = $section->items->where('is_active', true);
 @endphp
 
-<section class="py-24 bg-[#F0F0F0]">
+<section class="py-12 md:py-16 lg:py-20 bg-[#F0F0F0]">
 
     <div class="max-w-7xl mx-auto px-6">
 
         {{-- Heading --}}
-        <div class="text-center mb-16">
+        <div class="text-center mb-8 md:mb-10 lg:mb-10">
             <p class="uppercase tracking-[0.25em] text-sm text-[#4a5e3a] mb-3">
                 Testimonials
             </p>
-            <h2 class="text-4xl md:text-5xl font-light text-[#2f3d24]">
+            <h2 class="text-2xl md:text-4xl font-light text-[#2f3d24]">
                 Trusted By Families Across Texas
             </h2>
         </div>
@@ -21,7 +21,7 @@
 
             @foreach($items as $item)
 
-                <div class="bg-white shadow-xl overflow-hidden group">
+                <div class="bg-white shadow-xl overflow-hidden group rounded-xl">
 
                     {{-- Image --}}
                     @if($item->image)

@@ -4,9 +4,8 @@
 <div class="relative py-16 overflow-hidden">
 
     @if ($page->hero_image)
-        <img src="{{ asset('storage/' . $page->hero_image) }}"
-             alt="{{ $page->title }}"
-             class="absolute inset-0 w-full h-full object-cover object-center">
+        <img src="{{ asset('storage/' . $page->hero_image) }}" alt="{{ $page->title }}"
+            class="absolute inset-0 w-full h-full object-cover object-center">
     @endif
 
     <div class="absolute inset-0 bg-[#2f3d24]/80"></div>
@@ -24,7 +23,7 @@
 </div>
 
 {{-- Content with Sidebar --}}
-<section class="bg-[#f8f6f1] py-16">
+<section class="bg-[#f8f6f1] py-12 md:py-16 lg:py-20">
     <div class="max-w-7xl mx-auto px-6">
         <div class="grid grid-cols-1 lg:grid-cols-4 gap-12">
 
@@ -39,44 +38,13 @@
                     </div>
 
                     <nav class="py-4">
-                        <a href="{{ url('/memorial-design-guide/style') }}"
-                            class="flex items-center gap-3 px-6 py-3 text-sm border-l-4 border-transparent text-gray-600 hover:border-[#c8a96e] hover:bg-[#f8f6f1] hover:text-[#4a5e3a] transition-all duration-200">
-                            <span class="w-1.5 h-1.5 rounded-full bg-current shrink-0"></span>
-                            Style
-                        </a>
-                        <a href="{{ url('/memorial-design-guide/shape') }}"
-                            class="flex items-center gap-3 px-6 py-3 text-sm border-l-4 border-transparent text-gray-600 hover:border-[#c8a96e] hover:bg-[#f8f6f1] hover:text-[#4a5e3a] transition-all duration-200">
-                            <span class="w-1.5 h-1.5 rounded-full bg-current shrink-0"></span>
-                            Shape
-                        </a>
-                        <a href="{{ url('/memorial-design-guide/design') }}"
-                            class="flex items-center gap-3 px-6 py-3 text-sm border-l-4 border-transparent text-gray-600 hover:border-[#c8a96e] hover:bg-[#f8f6f1] hover:text-[#4a5e3a] transition-all duration-200">
-                            <span class="w-1.5 h-1.5 rounded-full bg-current shrink-0"></span>
-                            Design
-                        </a>
-                        <a href="{{ url('/memorial-design-guide/personalization') }}"
-                            class="flex items-center gap-3 px-6 py-3 text-sm border-l-4 border-transparent text-gray-600 hover:border-[#c8a96e] hover:bg-[#f8f6f1] hover:text-[#4a5e3a] transition-all duration-200">
-                            <span class="w-1.5 h-1.5 rounded-full bg-current shrink-0"></span>
-                            Personalization
-                        </a>
-
-                         <a href="{{ url('/memorial-design-guide/terms-definitions') }}"
-                            class="flex items-center gap-3 px-6 py-3 text-sm border-l-4 border-transparent text-gray-600 hover:border-[#c8a96e] hover:bg-[#f8f6f1] hover:text-[#4a5e3a] transition-all duration-200">
-                            <span class="w-1.5 h-1.5 rounded-full bg-current shrink-0"></span>
-                            Terms & Definitions
-                        </a>
-
-                         <a href="{{ url('/memorial-design-guide/cemetery-regulations') }}"
-                            class="flex items-center gap-3 px-6 py-3 text-sm border-l-4 border-transparent text-gray-600 hover:border-[#c8a96e] hover:bg-[#f8f6f1] hover:text-[#4a5e3a] transition-all duration-200">
-                            <span class="w-1.5 h-1.5 rounded-full bg-current shrink-0"></span>
-                            Cemetery Regulations
-                        </a>
-
-                         <a href="{{ url('/memorial-design-guide/accessories') }}"
-                            class="flex items-center gap-3 px-6 py-3 text-sm border-l-4 border-transparent text-gray-600 hover:border-[#c8a96e] hover:bg-[#f8f6f1] hover:text-[#4a5e3a] transition-all duration-200">
-                            <span class="w-1.5 h-1.5 rounded-full bg-current shrink-0"></span>
-                            Accessories
-                        </a>
+                        @foreach ($memorialGuideMenu as $item)
+                            <a href="{{ url('/memorial-design-guide/' . $item->slug) }}"
+                                class="flex items-center gap-3 px-6 py-3 text-sm border-l-4 border-transparent text-gray-600 hover:border-[#c8a96e] hover:bg-[#f8f6f1] hover:text-[#4a5e3a] transition-all duration-200">
+                                <span class="w-1.5 h-1.5 rounded-full bg-current shrink-0"></span>
+                                {{ $item->title }}
+                            </a>
+                        @endforeach
 
                         <div class="mx-6 border-gray-100"></div>
 
@@ -103,7 +71,8 @@
 
                     <h2 class="text-3xl font-semibold mb-6">A Memorial Manufacturing Overview</h2>
 
-                    <div class="prose prose-lg max-w-none
+                    <div
+                        class="prose prose-lg max-w-none
                         prose-headings:text-[#2f3d24]
                         prose-headings:font-light
                         prose-h2:text-3xl

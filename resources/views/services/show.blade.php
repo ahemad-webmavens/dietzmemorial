@@ -6,7 +6,7 @@
 
     {{-- Hero Image --}}
     @if($service->image)
-        <div style="position: relative; width: 100%; height: clamp(280px, 45vw, 500px); overflow: hidden;">
+        <div style="position: relative; width: 100%; height: 400px; overflow: hidden;">
             <img
                 src="{{ asset('storage/' . $service->image) }}"
                 alt="{{ $service->name }}"
@@ -18,7 +18,7 @@
 
             {{-- Title over image --}}
             <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 40px 32px;">
-                <div style="max-width: 900px; margin: 0 auto;">
+                <div style="max-width: 1280px; margin: 0 auto;">
                     <p style="color: #c8a96e; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 10px;">
                         Our Services
                     </p>
@@ -42,7 +42,7 @@
 
     {{-- Breadcrumb --}}
     <div style="background-color: #f9f7f4; border-bottom: 1px solid #e5e0d8; padding: 12px 32px;">
-        <div style="max-width: 900px; margin: 0 auto; font-size: 0.82rem; color: #888;">
+        <div style="max-width: 1280px; margin: 0 auto; font-size: 0.82rem; color: #888;">
             <a href="/" style="color: #4a5e3a; text-decoration: none;">Home</a>
             <span style="margin: 0 8px; color: #c8a96e;">›</span>
             <a href="/services" style="color: #4a5e3a; text-decoration: none;">Services</a>
@@ -52,7 +52,7 @@
     </div>
 
     {{-- Main Content --}}
-    <div style="max-width: 900px; margin: 0 auto; padding: 56px 32px 80px;">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 50px 32px 50px;">
 
         {{-- Gold divider --}}
         <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 36px;">

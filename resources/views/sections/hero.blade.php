@@ -32,7 +32,7 @@
 
                         {{-- Background Image --}}
                         <img src="{{ asset('storage/' . $slide->image) }}" alt="{{ $slide->title }}"
-                            class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                            class="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700">
 
                         {{-- Soft Overlay --}}
                         <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></div>

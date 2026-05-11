@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\BlogPost;
+use App\Models\Page;
 
 class BlogController extends Controller
 {
@@ -11,7 +12,14 @@ class BlogController extends Controller
             ->latest('published_at')
             ->get();
 
-        return view('blog.index', compact('posts'));
+        $page = Page::where('slug', 'blog')->where('is_active', true)->first();
+
+        return view('blog.index', [
+            'posts'          => $posts,
+            'seoTitle'       => $page?->meta_title ?: 'Blog | Dietz Memorial',
+            'seoDescription' => $page?->meta_description ?: 'Explore our blog.',
+            'seoImage'       => $page?->hero_image ?? null,
+        ]);
     }
 
     public function show($slug)

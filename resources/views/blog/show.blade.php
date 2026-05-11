@@ -18,7 +18,7 @@
     @endif
 
     {{-- Article wrapper --}}
-    <div style="background-color: #f9f7f4; min-height: 60vh; padding-bottom: 80px;">
+    <div style="background-color: #f9f7f4; min-height: 60vh; padding-bottom: 40px;">
 
         {{-- Title card — overlaps image --}}
         <div style="max-width: 820px; margin: {{ $post->featured_image ? '-80px' : '0' }} auto 0; position: relative; z-index: 10; padding: 0 24px;">

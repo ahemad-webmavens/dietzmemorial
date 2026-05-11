@@ -40,7 +40,7 @@
 </div>
 
 {{-- Story Section --}}
-<section class="py-24 bg-[#F0F0F0]">
+<section class="py-12 md:py-16 lg:py-20 bg-[#F0F0F0]">
     <div class="max-w-7xl mx-auto px-6">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
@@ -97,7 +97,7 @@
 
 {{-- Values Section --}}
 @if (!empty($page->extra['values']))
-<section class="py-20 bg-[#f8f6f1]">
+<section class="py-12 md:py-16 lg:py-20 bg-[#f8f6f1]">
     <div class="max-w-7xl mx-auto px-6">
 
         <div class="text-center mb-14">
@@ -124,7 +124,7 @@
 @endif
 
 {{-- CTA Banner --}}
-<section class="bg-[#4a5e3a] py-16 text-center">
+<section class="bg-[#4a5e3a] py-12 md:py-16 lg:py-20 text-center">
     <div class="max-w-3xl mx-auto px-6">
         <p class="uppercase tracking-[0.25em] text-sm text-[#c8a96e] mb-4">
             {{ $page->extra['bottom_cta_eyebrow'] ?? 'We Are Here For You' }}

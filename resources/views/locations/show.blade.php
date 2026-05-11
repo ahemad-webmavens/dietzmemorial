@@ -4,50 +4,66 @@
 
 @section('content')
 
+{{-- Force map iframe to be fully responsive --}}
+<style>
+    .map-embed iframe {
+        width: 100% !important;
+        height: 400px !important;
+        display: block;
+    }
+</style>
+
 {{-- Hero Banner --}}
-<div style="background-color: #4a5e3a; border-top: 3px solid #c8a96e; padding: 64px 32px; text-align: center; margin-bottom: 0;">
-    <p style="color: #c8a96e; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 12px;">
-        Dietz Memorial
-    </p>
-    <h1 style="color: #ffffff; font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; font-family: serif; margin: 0;">
-        {{ $location->name }}
-    </h1>
+<div
+    style="background-image: url('{{ asset('storage/pages/locations.webp') }}'); border-top: 3px solid #c8a96e;"
+    class="relative text-center bg-cover bg-center bg-no-repeat py-24 px-6 mb-14"
+>
+    <div class="absolute inset-0" style="background-color: rgba(74, 94, 58, 0.62);"></div>
+    <div class="relative z-10">
+        <p class="text-xs font-semibold tracking-widest uppercase mb-3" style="color: #c8a96e;">
+            Dietz Memorial
+        </p>
+        <h1 class="text-white font-bold font-serif m-0" style="font-size: clamp(2rem, 5vw, 3rem);">
+            {{ $location->name }}
+        </h1>
+    </div>
 </div>
 
 {{-- Breadcrumb --}}
-<div style="background-color: #f9f7f4; border-bottom: 1px solid #e5e0d8; padding: 12px 32px;">
-    <div style="max-width: 1000px; margin: 0 auto; font-size: 0.82rem; color: #888;">
-        <a href="/" style="color: #4a5e3a; text-decoration: none;">Home</a>
-        <span style="margin: 0 8px; color: #c8a96e;">›</span>
-        <a href="/locations" style="color: #4a5e3a; text-decoration: none;">Locations</a>
-        <span style="margin: 0 8px; color: #c8a96e;">›</span>
+<div class="px-8 py-3" style="background-color: #f9f7f4; border-bottom: 1px solid #e5e0d8;">
+    <div class="max-w-7xl mx-auto text-xs" style="color: #888;">
+        <a href="/" class="no-underline" style="color: #4a5e3a;">Home</a>
+        <span class="mx-2" style="color: #c8a96e;">›</span>
+        <a href="/locations" class="no-underline" style="color: #4a5e3a;">Locations</a>
+        <span class="mx-2" style="color: #c8a96e;">›</span>
         <span style="color: #555;">{{ $location->name }}</span>
     </div>
 </div>
 
-<div style="max-width: 1000px; margin: 0 auto; padding: 56px 24px 80px;">
+{{-- Main Content --}}
+<div class="max-w-7xl mx-auto px-6 py-14 md:px-8">
 
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start;">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 items-start">
 
         {{-- Left: Info --}}
         <div>
             {{-- Gold divider --}}
-            <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 32px;">
-                <div style="height: 2px; width: 48px; background-color: #c8a96e;"></div>
-                <span style="color: #c8a96e; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; white-space: nowrap;">Location Info</span>
-                <div style="height: 2px; flex: 1; background-color: #e5e0d8;"></div>
+            <div class="flex items-center gap-4 mb-8">
+                <div class="h-0.5 w-12 shrink-0" style="background-color: #c8a96e;"></div>
+                <span class="text-[0.72rem] font-semibold tracking-widest uppercase whitespace-nowrap" style="color: #c8a96e;">Location Info</span>
+                <div class="h-0.5 flex-1" style="background-color: #e5e0d8;"></div>
             </div>
 
-            <div style="display: flex; flex-direction: column; gap: 24px;">
+            <div class="flex flex-col gap-6">
 
                 {{-- Address --}}
-                <div style="display: flex; gap: 16px; align-items: flex-start;">
-                    <div style="width: 40px; height: 40px; background-color: #4a5e3a; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                        <span style="font-size: 1rem;">📍</span>
+                <div class="flex gap-4 items-start">
+                    <div class="w-10 h-10 rounded-full flex items-center justify-center shrink-0" style="background-color: #4a5e3a;">
+                        <span class="text-base">📍</span>
                     </div>
                     <div>
-                        <p style="color: #888; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; margin: 0 0 5px;">Address</p>
-                        <p style="color: #2d2d2d; font-size: 1rem; line-height: 1.6; margin: 0;">
+                        <p class="text-[0.72rem] font-semibold tracking-widest uppercase mb-1" style="color: #888;">Address</p>
+                        <p class="text-base leading-relaxed m-0" style="color: #2d2d2d;">
                             {{ $location->address }}<br>
                             {{ $location->city }}, {{ $location->state }} {{ $location->zip }}
                         </p>
@@ -56,13 +72,13 @@
 
                 {{-- Phone --}}
                 @if($location->phone)
-                <div style="display: flex; gap: 16px; align-items: flex-start;">
-                    <div style="width: 40px; height: 40px; background-color: #4a5e3a; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                        <span style="font-size: 1rem;">📞</span>
+                <div class="flex gap-4 items-start">
+                    <div class="w-10 h-10 rounded-full flex items-center justify-center shrink-0" style="background-color: #4a5e3a;">
+                        <span class="text-base">📞</span>
                     </div>
                     <div>
-                        <p style="color: #888; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; margin: 0 0 5px;">Phone</p>
-                        <a href="tel:{{ $location->phone }}" style="color: #4a5e3a; font-size: 1rem; font-weight: 600; text-decoration: none;">
+                        <p class="text-[0.72rem] font-semibold tracking-widest uppercase mb-1" style="color: #888;">Phone</p>
+                        <a href="tel:{{ $location->phone }}" class="text-base font-semibold no-underline" style="color: #4a5e3a;">
                             {{ $location->phone }}
                         </a>
                     </div>
@@ -71,13 +87,13 @@
 
                 {{-- Email --}}
                 @if($location->email)
-                <div style="display: flex; gap: 16px; align-items: flex-start;">
-                    <div style="width: 40px; height: 40px; background-color: #4a5e3a; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                        <span style="font-size: 1rem;">✉️</span>
+                <div class="flex gap-4 items-start">
+                    <div class="w-10 h-10 rounded-full flex items-center justify-center shrink-0" style="background-color: #4a5e3a;">
+                        <span class="text-base">✉️</span>
                     </div>
                     <div>
-                        <p style="color: #888; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; margin: 0 0 5px;">Email</p>
-                        <a href="mailto:{{ $location->email }}" style="color: #4a5e3a; font-size: 1rem; font-weight: 600; text-decoration: none;">
+                        <p class="text-[0.72rem] font-semibold tracking-widest uppercase mb-1" style="color: #888;">Email</p>
+                        <a href="mailto:{{ $location->email }}" class="text-base font-semibold no-underline" style="color: #4a5e3a;">
                             {{ $location->email }}
                         </a>
                     </div>
@@ -86,33 +102,33 @@
 
                 {{-- Hours --}}
                 @if($location->hours)
-                <div style="display: flex; gap: 16px; align-items: flex-start;">
-                    <div style="width: 40px; height: 40px; background-color: #4a5e3a; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                        <span style="font-size: 1rem;">🕐</span>
+                <div class="flex gap-4 items-start">
+                    <div class="w-10 h-10 rounded-full flex items-center justify-center shrink-0" style="background-color: #4a5e3a;">
+                        <span class="text-base">🕐</span>
                     </div>
                     <div>
-                        <p style="color: #888; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; margin: 0 0 5px;">Hours</p>
-                        <p style="color: #2d2d2d; font-size: 1rem; line-height: 1.6; margin: 0;">
-                            {{ $location->hours }}
-                        </p>
+                        <p class="text-[0.72rem] font-semibold tracking-widest uppercase mb-1" style="color: #888;">Hours</p>
+                        <p class="text-base leading-relaxed m-0" style="color: #2d2d2d;">{{ $location->hours }}</p>
                     </div>
                 </div>
                 @endif
 
             </div>
 
-            {{-- Action buttons --}}
-            <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 36px;">
+            {{-- Action Buttons --}}
+            <div class="flex flex-wrap gap-3 mt-9">
                 @if($location->phone)
                 <a href="tel:{{ $location->phone }}"
-                   style="display: inline-block; background-color: #4a5e3a; color: #ffffff; padding: 12px 24px; border-radius: 6px; font-size: 0.82rem; font-weight: 700; text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase;"
+                   class="inline-block px-6 py-3 rounded-md text-[0.82rem] font-bold tracking-wide uppercase no-underline text-white transition-colors duration-200"
+                   style="background-color: #4a5e3a;"
                    onmouseover="this.style.backgroundColor='#c8a96e'; this.style.color='#2d2d2d'"
                    onmouseout="this.style.backgroundColor='#4a5e3a'; this.style.color='#ffffff'">
                     Call Us
                 </a>
                 @endif
                 <a href="/contact"
-                   style="display: inline-block; background-color: transparent; color: #4a5e3a; padding: 12px 24px; border-radius: 6px; font-size: 0.82rem; font-weight: 700; text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; border: 2px solid #4a5e3a;"
+                   class="inline-block px-6 py-3 rounded-md text-[0.82rem] font-bold tracking-wide uppercase no-underline transition-colors duration-200"
+                   style="background-color: transparent; color: #4a5e3a; border: 2px solid #4a5e3a;"
                    onmouseover="this.style.backgroundColor='#4a5e3a'; this.style.color='#ffffff'"
                    onmouseout="this.style.backgroundColor='transparent'; this.style.color='#4a5e3a'">
                     Send a Message
@@ -123,12 +139,12 @@
         {{-- Right: Map --}}
         @if($location->map_embed)
         <div>
-            <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 32px;">
-                <div style="height: 2px; width: 48px; background-color: #c8a96e;"></div>
-                <span style="color: #c8a96e; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; white-space: nowrap;">Find Us</span>
-                <div style="height: 2px; flex: 1; background-color: #e5e0d8;"></div>
+            <div class="flex items-center gap-4 mb-8">
+                <div class="h-0.5 w-12 shrink-0" style="background-color: #c8a96e;"></div>
+                <span class="text-[0.72rem] font-semibold tracking-widest uppercase whitespace-nowrap" style="color: #c8a96e;">Find Us</span>
+                <div class="h-0.5 flex-1" style="background-color: #e5e0d8;"></div>
             </div>
-            <div style="border-radius: 10px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.1); border: 3px solid #c8a96e;">
+            <div class="map-embed rounded-xl overflow-hidden" style="box-shadow: 0 2px 12px rgba(0,0,0,0.1); border: 3px solid #c8a96e;">
                 {!! $location->map_embed !!}
             </div>
         </div>
@@ -137,12 +153,5 @@
     </div>
 
 </div>
-
-{{-- Responsive: stack columns on mobile --}}
-<style>
-    @media (max-width: 700px) {
-        .location-grid { grid-template-columns: 1fr !important; }
-    }
-</style>
 
 @endsection

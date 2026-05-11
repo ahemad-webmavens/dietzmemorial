@@ -3,12 +3,20 @@
 @section('content')
 
 {{-- Hero Banner --}}
-<div class="bg-[#4a5e3a] border-t-[3px] border-[#c8a96e] py-16 px-6 text-center">
-    <p class="text-[#c8a96e] text-xs font-semibold uppercase tracking-[0.2em] mb-3">Get In Touch</p>
-    <h1 class="text-white font-serif font-bold text-4xl md:text-5xl mb-4">Contact Us</h1>
-    <p class="text-white/75 text-lg max-w-lg mx-auto leading-relaxed">
-        We're here to help guide you through the memorial process with compassion and care.
-    </p>
+<div class="relative text-center border-t-[3px] border-[#c8a96e]"
+     style="background-image: url('{{ asset('storage/pages/contact.webp') }}'); background-size: cover; background-position: center; background-repeat: no-repeat; padding: 120px 24px;">
+
+    {{-- Dark overlay --}}
+    <div class="absolute inset-0" style="background-color: rgba(74, 94, 58, 0.82);"></div>
+
+    {{-- Content --}}
+    <div class="relative z-10">
+        <h1 class="text-white font-serif font-bold text-4xl md:text-5xl mb-4">Contact Us</h1>
+        <p class="text-white text-lg max-w-lg mx-auto leading-relaxed">
+            We're here to help guide you through the memorial process with compassion and care.
+        </p>
+    </div>
+
 </div>
 
 {{-- Breadcrumb --}}
@@ -21,7 +29,7 @@
 </div>
 
 {{-- Main Content --}}
-<div class="max-w-6xl mx-auto px-6 py-16 pb-24 grid grid-cols-1 lg:grid-cols-[1fr_1.6fr] gap-14 items-start">
+<div class="max-w-7xl mx-auto px-6 py-10 pb-12 grid grid-cols-1 lg:grid-cols-[1fr_1.6fr] gap-14 items-start">
 
     {{-- Left: Location Info --}}
     <div>

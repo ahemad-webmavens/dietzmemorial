@@ -15,19 +15,18 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        if (Schema::hasTable('memorial_guides')) {
 
-            View::share(
-                'memorialGuideMenu',
-                MemorialGuide::where('is_active', true)
-                    ->orderBy('order')
-                    ->get()
-            );
-
-        } else {
-
+        try {
+            if (Schema::hasTable('memorial_guides')) {
+                View::share(
+                    'memorialGuideMenu',
+                    MemorialGuide::where('is_active', true)->orderBy('order')->get()
+                );
+            } else {
+                View::share('memorialGuideMenu', collect());
+            }
+        } catch (\Exception $e) {
             View::share('memorialGuideMenu', collect());
-
         }
     }
 }

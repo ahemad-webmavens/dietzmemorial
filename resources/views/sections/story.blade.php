@@ -6,7 +6,7 @@
 
 @if($item)
 
-<section class="py-24 bg-[#F0F0F0]">
+<section class="py-12 md:py-16 lg:py-20 bg-[#F0F0F0]">
 
     <div class="max-w-7xl mx-auto px-6">
 
@@ -45,7 +45,7 @@
                     Our Legacy
                 </p>
 
-                <h2 class="text-4xl md:text-6xl font-light text-[#2f3d24] leading-tight mb-8">
+                <h2 class="text-2xl md:text-6xl font-light text-[#2f3d24] leading-tight mb-8">
                     {{ $item->title }}
                 </h2>
 

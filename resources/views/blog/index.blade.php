@@ -4,124 +4,113 @@
 
 @extends('layouts.app')
 
-@section('meta_description', 'Insights, guides and stories from Dietz Memorial — serving Central Texas since 1903.')
-
 @section('content')
 
-{{-- Minimal top bar instead of full hero --}}
-<div style="border-top: 3px solid #c8a96e; background-color: #f9f7f4; padding: 40px 32px 0;">
-    <div style="max-width: 1100px; margin: 0 auto;">
-        <p style="color: #c8a96e; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 6px;">
+{{-- Top bar --}}
+<div class="pt-10 px-6 md:px-8" style="border-top: 3px solid #c8a96e; background-color: #f9f7f4;">
+    <div class="max-w-7xl mx-auto">
+        <p class="text-[0.72rem] font-semibold tracking-widest uppercase mb-1.5" style="color: #c8a96e;">
             Stories & Insights
         </p>
-        <h1 style="color: #2d2d2d; font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; font-family: serif; margin: 0 0 32px;">
-            Our Blog
+        <h1 class="font-bold font-serif mb-8" style="color: #2d2d2d; font-size: clamp(2rem, 5vw, 3rem); margin-top: 0;">
+            Our Blogs
         </h1>
-        <div style="height: 1px; background: linear-gradient(to right, #c8a96e, #e5e0d8);"></div>
+        <div class="h-px" style="background: linear-gradient(to right, #c8a96e, #e5e0d8);"></div>
     </div>
 </div>
 
-<div style="background-color: #f9f7f4; padding: 48px 32px 80px;">
-<div style="max-width: 1100px; margin: 0 auto;">
+<div class="px-6 pb-10 pt-12 md:px-8" style="background-color: #f9f7f4;">
+    <div class="max-w-7xl mx-auto">
 
-    {{-- Featured post (first one) --}}
-    @if($posts->count())
-    @php $featured = $posts->first(); @endphp
-    <a href="{{ url('/blog/' . $featured->slug) }}" style="text-decoration: none; display: block; margin-bottom: 48px;">
-        <div style="background: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.08); display: grid; grid-template-columns: 1fr 1fr; min-height: 380px;"
-             onmouseover="this.style.boxShadow='0 12px 40px rgba(0,0,0,0.14)'"
-             onmouseout="this.style.boxShadow='0 4px 20px rgba(0,0,0,0.08)'">
+        {{-- Featured post --}}
+        @if($posts->count())
+        @php $featured = $posts->first(); @endphp
+        <a href="{{ url('/blog/' . $featured->slug) }}" class="no-underline block mb-12">
+            <div
+                class="bg-white rounded-xl overflow-hidden grid grid-cols-1 md:grid-cols-2 min-h-[320px] md:min-h-[380px] transition-shadow duration-300 hover:shadow-2xl"
+                style="box-shadow: 0 4px 20px rgba(0,0,0,0.08);"
+            >
 
-            @if($featured->featured_image)
-                <div style="overflow: hidden; position: relative;">
+                @if($featured->featured_image)
+                <div class="overflow-hidden relative" style="min-height: 240px;">
                     <img
                         src="{{ asset('storage/' . $featured->featured_image) }}"
                         alt="{{ $featured->title }}"
                         loading="lazy"
-                        style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease;"
-                        onmouseover="this.style.transform='scale(1.04)'"
-                        onmouseout="this.style.transform='scale(1)'"
+                        class="w-full h-full object-cover block transition-transform duration-500 hover:scale-105"
+                        style="min-height: 240px;"
                     >
-                    <div style="position: absolute; top: 20px; left: 20px; background-color: #c8a96e; color: #2d2d2d; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 5px 12px; border-radius: 20px;">
+                    <div class="absolute top-5 left-5 text-[0.7rem] font-bold tracking-widest uppercase px-3 py-1 rounded-full" style="background-color: #c8a96e; color: #2d2d2d;">
                         Featured
                     </div>
                 </div>
-            @endif
+                @endif
 
-            <div style="padding: 40px 44px; display: flex; flex-direction: column; justify-content: center;">
-                <p style="color: #c8a96e; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 14px;">
-                    {{ optional($featured->published_at)->format('F d, Y') }}
-                </p>
-                <h2 style="color: #2d2d2d; font-size: 1.7rem; font-weight: 700; font-family: serif; line-height: 1.3; margin-bottom: 16px;">
-                    {{ $featured->title }}
-                </h2>
-                <div style="width: 40px; height: 2px; background-color: #c8a96e; margin-bottom: 16px;"></div>
-                <p style="color: #6b7280; font-size: 0.95rem; line-height: 1.75; margin-bottom: 28px;">
-                    {{ Str::limit($featured->excerpt, 180) }}
-                </p>
-                <span style="display: inline-flex; align-items: center; gap: 8px; color: #4a5e3a; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;">
-                    Read Article <span style="font-size: 1.1rem;">→</span>
-                </span>
+                <div class="p-8 md:p-10 flex flex-col justify-center">
+                    <p class="text-[0.72rem] font-semibold tracking-widest uppercase mb-3" style="color: #c8a96e;">
+                        {{ optional($featured->published_at)->format('F d, Y') }}
+                    </p>
+                    <h2 class="font-bold font-serif leading-snug mb-4" style="color: #2d2d2d; font-size: clamp(1.3rem, 3vw, 1.7rem);">
+                        {{ $featured->title }}
+                    </h2>
+                    <div class="w-10 h-0.5 mb-4" style="background-color: #c8a96e;"></div>
+                    <p class="text-sm leading-relaxed mb-7" style="color: #6b7280;">
+                        {{ Str::limit($featured->excerpt, 180) }}
+                    </p>
+                    <span class="inline-flex items-center gap-2 text-[0.85rem] font-bold tracking-wide uppercase" style="color: #4a5e3a;">
+                        Read Article <span class="text-lg">→</span>
+                    </span>
+                </div>
+
             </div>
-        </div>
-    </div>
-    </a>
-    @endif
+        </a>
+        @endif
 
-    {{-- Remaining posts grid --}}
-    @if($posts->count() > 1)
-    <div style="max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 28px;">
+        {{-- Remaining posts grid --}}
+        @if($posts->count() > 1)
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
 
-        @foreach($posts->skip(1) as $post)
-            <a href="{{ url('/blog/' . $post->slug) }}" style="text-decoration: none; display: block;">
-                <div style="background: #ffffff; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.07); height: 100%; display: flex; flex-direction: column; transition: box-shadow 0.25s, transform 0.25s;"
-                     onmouseover="this.style.boxShadow='0 8px 28px rgba(0,0,0,0.13)'; this.style.transform='translateY(-4px)'"
-                     onmouseout="this.style.boxShadow='0 2px 12px rgba(0,0,0,0.07)'; this.style.transform='translateY(0)'">
-
+            @foreach($posts->skip(1) as $post)
+            <a href="{{ url('/blog/' . $post->slug) }}" class="no-underline block h-full">
+                <div
+                    class="bg-white rounded-xl overflow-hidden flex flex-col h-full transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+                    style="box-shadow: 0 2px 12px rgba(0,0,0,0.07);"
+                >
                     @if($post->featured_image)
-                        <div style="height: 200px; overflow: hidden; position: relative;">
-                            <img
-                                src="{{ asset('storage/' . $post->featured_image) }}"
-                                alt="{{ $post->title }}"
-                                loading="lazy"
-                                style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease;"
-                                onmouseover="this.style.transform='scale(1.05)'"
-                                onmouseout="this.style.transform='scale(1)'"
-                            >
-                            <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background-color: #c8a96e;"></div>
-                        </div>
+                    <div class="h-48 overflow-hidden relative">
+                        <img
+                            src="{{ asset('storage/' . $post->featured_image) }}"
+                            alt="{{ $post->title }}"
+                            loading="lazy"
+                            class="w-full h-full object-cover block transition-transform duration-400 hover:scale-105"
+                        >
+                        <div class="absolute bottom-0 left-0 right-0 h-[3px]" style="background-color: #c8a96e;"></div>
+                    </div>
                     @endif
 
-                    <div style="padding: 22px 24px; flex: 1; display: flex; flex-direction: column;">
-                        <p style="color: #c8a96e; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 8px;">
+                    <div class="p-6 flex-1 flex flex-col">
+                        <p class="text-[0.7rem] font-semibold tracking-widest uppercase mb-2" style="color: #c8a96e;">
                             {{ optional($post->published_at)->format('M d, Y') }}
                         </p>
-                        <h2 style="color: #2d2d2d; font-size: 1.15rem; font-weight: 700; font-family: serif; line-height: 1.35; margin-bottom: 10px; flex: 1;">
+                        <h2 class="font-bold font-serif leading-snug mb-2.5 flex-1" style="color: #2d2d2d; font-size: 1.15rem;">
                             {{ $post->title }}
                         </h2>
-                        <p style="color: #6b7280; font-size: 0.88rem; line-height: 1.65; margin-bottom: 18px;">
+                        <p class="text-sm leading-relaxed mb-4" style="color: #6b7280;">
                             {{ Str::limit($post->excerpt, 110) }}
                         </p>
-                        <span style="color: #4a5e3a; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; display: inline-flex; align-items: center; gap: 6px;">
+                        <span class="inline-flex items-center gap-1.5 text-[0.8rem] font-bold tracking-wide uppercase" style="color: #4a5e3a;">
                             Read More <span>→</span>
                         </span>
                     </div>
 
                 </div>
             </a>
-        @endforeach
+            @endforeach
+
+        </div>
+        @endif
 
     </div>
-    @endif
-
 </div>
-</div>
-
-{{-- Mobile responsive featured post --}}
-<style>
-    @media (max-width: 680px) {
-        .featured-grid { grid-template-columns: 1fr !important; }
-    }
-</style>
 
 @endsection

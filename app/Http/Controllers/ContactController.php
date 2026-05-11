@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Mail\ContactSubmissionMail;
 use App\Models\ContactSubmission;
 use App\Models\Location;
+use App\Models\Page;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -13,7 +14,14 @@ class ContactController extends Controller
     {
         $locations = Location::where('is_active', true)->get();
 
-        return view('contact.index', compact('locations'));
+        $page = Page::where('slug', 'contact')->where('is_active', true)->first();
+
+        return view('contact.index', [
+            'locations'      => $locations,
+            'seoTitle'       => $page?->meta_title ?: 'Contact | Dietz Memorial',
+            'seoDescription' => $page?->meta_description ?: 'Contact us.',
+            'seoImage'       => null,
+        ]);
     }
 
     public function store(Request $request)

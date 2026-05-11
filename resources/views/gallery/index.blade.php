@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
-@section('meta_description', 'Browse our memorial gallery — upright, flat, bevel, slant, bronze and custom memorials crafted in Central Texas.')
-
 @section('content')
 
 <style>
@@ -10,16 +8,24 @@
 </style>
 
 {{-- Hero Banner --}}
-<div style="background-color: #4a5e3a; border-top: 3px solid #c8a96e; padding: 64px 32px; text-align: center; margin-bottom: 56px;">
-    <p style="color: #c8a96e; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 12px;">
-        Our Work
-    </p>
-    <h1 style="color: #ffffff; font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; font-family: serif; margin-bottom: 16px;">
-        Memorial Gallery
-    </h1>
-    <p style="color: rgba(255,255,255,0.75); font-size: 1.05rem; max-width: 520px; margin: 0 auto; line-height: 1.7;">
-        Browse our collection of handcrafted memorials — each one a unique tribute to a life well lived.
-    </p>
+<div style="background-image: url('{{ asset('storage/pages/gallery.webp') }}'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative; padding: 120px 24px; text-align: center; margin-bottom: 40px; border-top: 3px solid #c8a96e;">
+
+    {{-- Dark overlay --}}
+    <div style="position: absolute; inset: 0; background-color: rgba(74, 94, 58, 0.52);"></div>
+
+    {{-- Content --}}
+    <div style="position: relative; z-index: 1;">
+        <p style="color: #c8a96e; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 12px;">
+            Our Work
+        </p>
+        <h1 style="color: #ffffff; font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; font-family: serif; margin-bottom: 16px;">
+            Memorial Gallery
+        </h1>
+        <p style="color: rgba(255,255,255,0.85); font-size: 1.05rem; max-width: 520px; margin: 0 auto; line-height: 1.7;">
+            Browse our collection of handcrafted memorials — each one a unique tribute to a life well lived.
+        </p>
+    </div>
+
 </div>
 
 <div
@@ -29,11 +35,11 @@
         selectedImage: '',
         selectedTitle: '',
     }"
-    style="max-width: 1280px; margin: 0 auto; padding: 0 24px 80px;"
+    style="max-width: 1280px; margin: 0 auto; padding: 0 24px 40px;"
 >
 
     {{-- Filter Buttons --}}
-    <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 40px; justify-content: center;">
+    <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 40px;" class="justify-left md:justify-center">
 
        {{-- All button --}}
         <button

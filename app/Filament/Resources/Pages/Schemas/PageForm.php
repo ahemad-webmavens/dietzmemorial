@@ -1,9 +1,10 @@
 <?php
+
 namespace App\Filament\Resources\Pages\Schemas;
 
 use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\KeyValue;
 use Filament\Forms\Components\RichEditor;
+use Filament\Schemas\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -16,43 +17,104 @@ class PageForm
     {
         return $schema
             ->components([
-                TextInput::make('title')
-                    ->required()
-                    ->maxLength(255),
 
-                TextInput::make('slug')
-                    ->required()
-                    ->unique(ignoreRecord: true),
+                Section::make('Basic Information')
+                    ->schema([
 
-                Select::make('template')
-                    ->options([
-                        'default'        => 'Default',
-                        'about'          => 'About Us',
-                        'memorial_guide' => 'Memorial Design Guide',
-                        'contact'        => 'Contact',
+                        TextInput::make('title')
+                            ->required()
+                            ->maxLength(255),
+
+                        TextInput::make('slug')
+                            ->required()
+                            ->unique(ignoreRecord: true),
+
+                        Select::make('template')
+                            ->options([
+                                'default'        => 'Default',
+                                'about'          => 'About Us',
+                                'memorial_guide' => 'Memorial Design Guide',
+                                'contact'        => 'Contact',
+                            ])
+                            ->default('default')
+                            ->required(),
+
+                        Toggle::make('is_active')
+                            ->default(true),
+
                     ])
-                    ->default('default')
-                    ->required(),
+                    ->columns(1),
 
-                RichEditor::make('content'),
+              
+                Section::make('Page Content')
+                    ->schema([
 
-                FileUpload::make('hero_image')
-                    ->image()
-                    ->disk('public')
-                    ->directory('pages')
-                    ->visibility('public'),
+                        RichEditor::make('content')
+                            ->columnSpanFull()
+                            ->toolbarButtons([
+                                'bold',
+                                'italic',
+                                'underline',
+                                'strike',
+                                'h2',
+                                'h3',
+                                'bulletList',
+                                'orderedList',
+                                'link',
+                                'blockquote',
+                            ])
+                            ->extraAttributes([
+                                'style' => 'min-height: 300px;',
+                            ]),
 
-                KeyValue::make('extra')
-                    ->label('Extra Page Data')
-                    ->helperText('Add structured data like founded year, stats, etc.')
-                    ->nullable(),
+                    ]),
 
-                TextInput::make('meta_title'),
+            
+                Section::make('Hero Image')
+                    ->schema([
 
-                Textarea::make('meta_description'),
+                        FileUpload::make('hero_image')
+                            ->image()
+                            ->disk('public')
+                            ->directory('pages')
+                            ->visibility('public')
+                            ->imageEditor()
+                            ->panelAspectRatio('16:9')
+                            ->panelLayout('integrated')
+                            ->imageResizeTargetWidth('1600')
+                            ->imageResizeTargetHeight('900'),
 
-                Toggle::make('is_active')
-                    ->default(true),
+                    ]),
+
+               
+                Section::make('Extra Structured Data')
+                    ->description('Used for advanced page content like stats, values, timelines, etc.')
+                    ->schema([
+
+                        Textarea::make('extra')
+                            ->rows(14)
+                            ->formatStateUsing(fn ($state) => $state
+                                ? json_encode($state, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES)
+                                : null)
+                            ->dehydrateStateUsing(fn ($state) => json_decode($state, true))
+                            ->columnSpanFull()
+
+                    ]),
+
+            
+               Section::make('SEO')
+                ->schema([
+
+                    TextInput::make('meta_title')
+                        ->columnSpanFull(),
+
+                    Textarea::make('meta_description')
+                        ->rows(4)
+                        ->columnSpanFull(),
+
+                ])
+                ->columnSpanFull(),
+
             ]);
     }
 }

@@ -1,23 +1,27 @@
 @extends('layouts.app')
 
-@section('meta_description', 'Find a Dietz Memorial location near you — serving Waco, New Braunfels, and all of Central Texas.')
-
 @section('content')
 
 {{-- Hero Banner --}}
-<div style="background-color: #4a5e3a; border-top: 3px solid #c8a96e; padding: 64px 32px; text-align: center; margin-bottom: 56px;">
-    <p style="color: #c8a96e; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 12px;">
-        Find Us
-    </p>
-    <h1 style="color: #ffffff; font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; font-family: serif; margin-bottom: 16px;">
-        Our Locations
-    </h1>
-    <p style="color: rgba(255,255,255,0.75); font-size: 1.05rem; max-width: 520px; margin: 0 auto; line-height: 1.7;">
-        Serving Central Texas with two convenient locations — come visit us today.
-    </p>
+<div style="background-image: url('{{ asset('storage/pages/locations.webp') }}'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative; padding: 120px 24px; text-align: center; margin-bottom: 40px; border-top: 3px solid #c8a96e;">
+
+    <div style="position: absolute; inset: 0; background-color: rgba(74, 94, 58, 0.62);"></div>
+
+    <div style="position: relative; z-index: 1;">
+        <p style="color: #c8a96e; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 12px;">
+            Find Us
+        </p>
+        <h1 style="color: #ffffff; font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; font-family: serif; margin-bottom: 16px;">
+            Our Locations
+        </h1>
+        <p style="color: rgba(255,255,255,0.85); font-size: 1.05rem; max-width: 520px; margin: 0 auto; line-height: 1.7;">
+            Serving Central Texas with two convenient locations — come visit us today.
+        </p>
+    </div>
+
 </div>
 
-<div style="max-width: 1100px; margin: 0 auto; padding: 0 24px 80px;">
+<div style="max-width: 1280px; margin: 0 auto; padding: 0 24px 40px;">
 
     <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 32px;">
 
@@ -83,20 +87,17 @@
                     </div>
                     @endif
 
-                    {{-- Divider --}}
-                    <div style="height: 1px; background-color: #e5e0d8; margin-top: 4px;"></div>
-
-                    {{-- Button --}}
-                    <a
-                        href="{{ url('/locations/' . $location->slug) }}"
-                        style="display: inline-block; background-color: #4a5e3a; color: #ffffff; padding: 11px 24px; border-radius: 6px; font-size: 0.82rem; font-weight: 700; text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; align-self: flex-start; transition: background-color 0.2s;"
-                        onmouseover="this.style.backgroundColor='#c8a96e'; this.style.color='#2d2d2d'"
-                        onmouseout="this.style.backgroundColor='#4a5e3a'; this.style.color='#ffffff'"
-                    >
-                        View Location
-                    </a>
-
                 </div>
+
+                {{-- Full-width button at bottom --}}
+                    <a
+                    href="{{ url('/locations/' . $location->slug) }}"
+                    style="display: block; background-color: #4a5e3a; color: #ffffff; padding: 14px 28px; font-size: 0.82rem; font-weight: 700; text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; text-align: center; transition: background-color 0.2s;"
+                    onmouseover="this.style.backgroundColor='#c8a96e'; this.style.color='#2d2d2d'"
+                    onmouseout="this.style.backgroundColor='#4a5e3a'; this.style.color='#ffffff'"
+                >
+                    View Location →
+                </a>
 
             </div>
 
@@ -105,7 +106,7 @@
     </div>
 
     {{-- Bottom CTA --}}
-    <div style="margin-top: 72px; background-color: #4a5e3a; border-radius: 12px; padding: 48px 32px; text-align: center;">
+    <div style="margin-top: 40px; background-color: #4a5e3a; border-radius: 12px; padding: 48px 32px; text-align: center;">
         <p style="color: #c8a96e; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 12px;">
             Get In Touch
         </p>
@@ -115,7 +116,7 @@
         <p style="color: rgba(255,255,255,0.75); font-size: 0.95rem; margin-bottom: 28px; max-width: 440px; margin-left: auto; margin-right: auto; line-height: 1.7;">
             Our team is happy to help you find the right location and guide you through the process.
         </p>
-        <a
+            <a
             href="/contact"
             style="display: inline-block; background-color: #c8a96e; color: #2d2d2d; padding: 14px 32px; border-radius: 6px; font-size: 0.9rem; font-weight: 700; text-decoration: none; letter-spacing: 0.05em; text-transform: uppercase;"
             onmouseover="this.style.backgroundColor='#b8945a'"
