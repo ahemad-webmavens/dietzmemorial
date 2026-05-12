@@ -12,9 +12,17 @@ class GraniteColorForm
     public static function configure(Schema $schema): Schema
     {
         return $schema
+            ->columns(2) // 👈 2 columns on the whole form
             ->components([
                 TextInput::make('name')
-                    ->required(),
+                    ->required()
+                    ->columnSpan(1), // half width
+
+                Toggle::make('is_active')
+                    ->default(true)
+                    ->inline(false)
+                    ->label('Is Active')
+                    ->columnSpan(1), // half width
 
                 FileUpload::make('image')
                     ->image()
@@ -25,13 +33,12 @@ class GraniteColorForm
                     ->imageResizeMode('cover')
                     ->imageCropAspectRatio('16:9')
                     ->imageResizeTargetWidth('1600')
-                    ->imageResizeTargetHeight('900'),
+                    ->imageResizeTargetHeight('900')
+                    ->columnSpan(2), // full width
 
                 Textarea::make('description')
-                    ->rows(3),
-
-                Toggle::make('is_active')
-                    ->default(true),
+                    ->rows(3)
+                    ->columnSpan(2), // full width
             ]);
     }
 }

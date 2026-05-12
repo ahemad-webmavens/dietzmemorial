@@ -41,9 +41,6 @@ class GalleryItemForm
                 TextInput::make('alt_text')
                     ->label('Alt Text (SEO important)'),
 
-                TextInput::make('order')
-                    ->numeric()
-                    ->default(0),
             ]);
     }
 }

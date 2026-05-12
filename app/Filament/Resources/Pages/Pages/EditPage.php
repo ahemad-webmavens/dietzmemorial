@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Filament\Resources\Pages\Pages;
 
 use App\Filament\Resources\Pages\PageResource;
@@ -16,4 +15,5 @@ class EditPage extends EditRecord
             DeleteAction::make(),
         ];
     }
+
 }

@@ -1,3 +1,7 @@
+@php
+    $extra = $page?->extra ?? [];
+@endphp
+
 @extends('layouts.app')
 
 @section('content')
@@ -8,21 +12,19 @@
 </style>
 
 {{-- Hero Banner --}}
-<div style="background-image: url('{{ asset('storage/pages/gallery.webp') }}'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative; padding: 120px 24px; text-align: center; margin-bottom: 40px; border-top: 3px solid #c8a96e;">
+<div style="background-image: url('{{ $page?->hero_image ? asset('storage/' . $page->hero_image) : asset('storage/pages/gallery.webp') }}'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative; padding: 120px 24px; text-align: center; margin-bottom: 40px; border-top: 3px solid #c8a96e;">
 
-    {{-- Dark overlay --}}
     <div style="position: absolute; inset: 0; background-color: rgba(74, 94, 58, 0.52);"></div>
 
-    {{-- Content --}}
     <div style="position: relative; z-index: 1;">
         <p style="color: #c8a96e; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 12px;">
-            Our Work
+            {{ $extra['eyebrow'] ?? 'Our Work' }}
         </p>
         <h1 style="color: #ffffff; font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; font-family: serif; margin-bottom: 16px;">
-            Memorial Gallery
+            {{ $extra['hero_heading'] ?? 'Memorial Gallery' }}
         </h1>
         <p style="color: rgba(255,255,255,0.85); font-size: 1.05rem; max-width: 520px; margin: 0 auto; line-height: 1.7;">
-            Browse our collection of handcrafted memorials — each one a unique tribute to a life well lived.
+            {{ $extra['hero_subtext'] ?? 'Browse our collection of handcrafted memorials — each one a unique tribute to a life well lived.' }}
         </p>
     </div>
 

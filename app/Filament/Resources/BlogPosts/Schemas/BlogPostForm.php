@@ -3,6 +3,7 @@ namespace App\Filament\Resources\BlogPosts\Schemas;
 
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
@@ -22,12 +23,23 @@ class BlogPostForm
                     ->unique(ignoreRecord: true),
 
                 Textarea::make('excerpt')
-                    ->rows(10)
+                    ->rows(4)
                     ->label('Short Description'),
 
-                Textarea::make('body')
-                    ->rows(10)
-                    ->required(),
+                RichEditor::make('body')
+                    ->required()
+                    ->toolbarButtons([
+                        'bold',
+                        'italic',
+                        'underline',
+                        'strike',
+                        'h2',
+                        'h3',
+                        'bulletList',
+                        'orderedList',
+                        'link',
+                        'blockquote',
+                    ]),
 
                 FileUpload::make('featured_image')
                     ->image()

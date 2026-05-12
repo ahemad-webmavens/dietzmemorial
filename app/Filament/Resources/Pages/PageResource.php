@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Filament\Resources\Pages;
 
 use App\Filament\Resources\Pages\Pages\CreatePage;
@@ -42,9 +41,9 @@ class PageResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => ListPages::route('/'),
+            'index'  => ListPages::route('/'),
             'create' => CreatePage::route('/create'),
-            'edit' => EditPage::route('/{record}/edit'),
+            'edit'   => EditPage::route('/{record}/edit'),
         ];
     }
 }

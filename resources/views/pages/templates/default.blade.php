@@ -1,3 +1,7 @@
+@php
+    $extra = $page->extra ?? [];
+@endphp
+
 <div class="max-w-7xl mx-auto py-12">
     <h1 class="text-5xl font-bold mb-6">
         {{ $page->title }}

@@ -18,6 +18,7 @@ class ContactController extends Controller
 
         return view('contact.index', [
             'locations'      => $locations,
+            'page'           => $page,
             'seoTitle'       => $page?->meta_title ?: 'Contact | Dietz Memorial',
             'seoDescription' => $page?->meta_description ?: 'Contact us.',
             'seoImage'       => null,

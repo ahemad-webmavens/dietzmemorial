@@ -43,7 +43,13 @@ class ServiceForm
                     ->default(0),
 
                 Toggle::make('is_active')
-                    ->default(true),
+                    ->default(true)
+                    ->inline(false)
+                    ->label('Is Active')
+                    ->columnSpan(1)
+                    ->extraFieldWrapperAttributes([
+                        'style' => 'padding-top: 10px;',
+                    ]),
             ]);
     }
 }

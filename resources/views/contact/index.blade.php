@@ -1,19 +1,23 @@
+@php
+    $extra = $page?->extra ?? [];
+@endphp
+
 @extends('layouts.app')
 
 @section('content')
 
 {{-- Hero Banner --}}
 <div class="relative text-center border-t-[3px] border-[#c8a96e]"
-     style="background-image: url('{{ asset('storage/pages/contact.webp') }}'); background-size: cover; background-position: center; background-repeat: no-repeat; padding: 120px 24px;">
+     style="background-image: url('{{ $page?->hero_image ? asset('storage/' . $page->hero_image) : asset('storage/pages/contact.webp') }}'); background-size: cover; background-position: center; background-repeat: no-repeat; padding: 120px 24px;">
 
-    {{-- Dark overlay --}}
     <div class="absolute inset-0" style="background-color: rgba(74, 94, 58, 0.82);"></div>
 
-    {{-- Content --}}
     <div class="relative z-10">
-        <h1 class="text-white font-serif font-bold text-4xl md:text-5xl mb-4">Contact Us</h1>
+        <h1 class="text-white font-serif font-bold text-4xl md:text-5xl mb-4">
+            {{ $extra['hero_heading'] ?? 'Contact Us' }}
+        </h1>
         <p class="text-white text-lg max-w-lg mx-auto leading-relaxed">
-            We're here to help guide you through the memorial process with compassion and care.
+            {{ $extra['hero_subtext'] ?? "We're here to help guide you through the memorial process with compassion and care." }}
         </p>
     </div>
 
@@ -42,49 +46,68 @@
 
         {{-- Waco --}}
         <div class="mb-9">
-            <h3 class="font-serif text-xl font-bold text-gray-800 mb-4">Waco — Headquarters</h3>
+            <h3 class="font-serif text-xl font-bold text-gray-800 mb-4">
+                {{ $extra['waco_heading'] ?? 'Waco — Headquarters' }}
+            </h3>
             <div class="flex flex-col gap-3">
                 <div class="flex items-start gap-3">
                     <span class="text-[#c8a96e] mt-0.5 shrink-0">📍</span>
-                    <p class="text-gray-500 text-sm leading-relaxed">500 LaSalle Ave<br>Waco, TX 76706</p>
+                    <p class="text-gray-500 text-sm leading-relaxed">
+                        {{ $extra['waco_address'] ?? '500 LaSalle Ave' }}<br>
+                        {{ $extra['waco_city_state_zip'] ?? 'Waco, TX 76706' }}
+                    </p>
                 </div>
                 <div class="flex items-center gap-3">
                     <span class="text-[#c8a96e] shrink-0">📞</span>
-                    <a href="tel:{{ setting('waco_phone') }}" class="text-[#4a5e3a] text-sm font-medium hover:underline">{{ setting('waco_phone') }}</a>
+                    <a href="tel:{{ setting('waco_phone') }}" class="text-[#4a5e3a] text-sm font-medium hover:underline">
+                        {{ setting('waco_phone') }}
+                    </a>
                 </div>
                 <div class="flex items-center gap-3">
                     <span class="text-[#c8a96e] shrink-0">✉️</span>
-                    <a href="mailto:{{ setting('email', 'sales@dietzmemorial.com') }}" class="text-[#4a5e3a] text-sm font-medium hover:underline">{{ setting('email', 'sales@dietzmemorial.com') }}</a>
+                    <a href="mailto:{{ setting('email', 'sales@dietzmemorial.com') }}" class="text-[#4a5e3a] text-sm font-medium hover:underline">
+                        {{ setting('email', 'sales@dietzmemorial.com') }}
+                    </a>
                 </div>
                 <div class="flex items-center gap-3">
                     <span class="text-[#c8a96e] shrink-0">🕐</span>
-                    <p class="text-gray-400 text-sm">Mon–Fri: 9:00 AM – 5:00 PM</p>
+                    <p class="text-gray-400 text-sm">
+                        {{ $extra['waco_hours'] ?? 'Mon–Fri: 9:00 AM – 5:00 PM' }}
+                    </p>
                 </div>
             </div>
         </div>
 
-        {{-- Divider --}}
-        <div class="h-px bg-gradient-to-r from-[#c8a96e] to-[#e5e0d8] mb-9"></div>
-
         {{-- New Braunfels --}}
         <div class="mb-10">
-            <h3 class="font-serif text-xl font-bold text-gray-800 mb-4">New Braunfels</h3>
+            <h3 class="font-serif text-xl font-bold text-gray-800 mb-4">
+                {{ $extra['nb_heading'] ?? 'New Braunfels' }}
+            </h3>
             <div class="flex flex-col gap-3">
                 <div class="flex items-start gap-3">
                     <span class="text-[#c8a96e] mt-0.5 shrink-0">📍</span>
-                    <p class="text-gray-500 text-sm leading-relaxed">628 S. Business IH 35<br>New Braunfels, TX 78130</p>
+                    <p class="text-gray-500 text-sm leading-relaxed">
+                        {{ $extra['nb_address'] ?? '628 S. Business IH 35' }}<br>
+                        {{ $extra['nb_city_state_zip'] ?? 'New Braunfels, TX 78130' }}
+                    </p>
                 </div>
                 <div class="flex items-center gap-3">
                     <span class="text-[#c8a96e] shrink-0">📞</span>
-                    <a href="tel:{{ setting('nb_phone') }}" class="text-[#4a5e3a] text-sm font-medium hover:underline">{{ setting('nb_phone') }}</a>
+                    <a href="tel:{{ setting('nb_phone') }}" class="text-[#4a5e3a] text-sm font-medium hover:underline">
+                        {{ setting('nb_phone') }}
+                    </a>
                 </div>
             </div>
         </div>
 
         {{-- Trust badge --}}
         <div class="bg-[#f9f7f4] border-l-4 border-[#c8a96e] rounded-r-lg px-5 py-4">
-            <p class="text-[#4a5e3a] text-xs font-bold uppercase tracking-wider mb-1">Family-Owned Since 1903</p>
-            <p class="text-gray-400 text-sm leading-relaxed">Proudly serving Waco, New Braunfels, and all of Central Texas for over 120 years.</p>
+            <p class="text-[#4a5e3a] text-xs font-bold uppercase tracking-wider mb-1">
+                {{ $extra['trust_label'] ?? 'Family-Owned Since 1903' }}
+            </p>
+            <p class="text-gray-400 text-sm leading-relaxed">
+                {{ $extra['trust_body'] ?? 'Proudly serving Waco, New Braunfels, and all of Central Texas for over 120 years.' }}
+            </p>
         </div>
 
     </div>

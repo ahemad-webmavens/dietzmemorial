@@ -14,6 +14,7 @@ class LocationController extends Controller
 
         return view('locations.index', [
             'locations'      => $locations,
+            'page'           => $page,
             'seoTitle'       => $page?->meta_title ?: 'Locations | Dietz Memorial',
             'seoDescription' => $page?->meta_description ?: 'Explore our locations.',
             'seoImage'       => null,

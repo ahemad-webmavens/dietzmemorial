@@ -1,21 +1,25 @@
+@php
+    $extra = $page?->extra ?? [];
+@endphp
+
 @extends('layouts.app')
 
 @section('content')
 
 {{-- Hero Banner --}}
-<div style="background-image: url('{{ asset('storage/pages/locations.webp') }}'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative; padding: 120px 24px; text-align: center; margin-bottom: 40px; border-top: 3px solid #c8a96e;">
+<div style="background-image: url('{{ $page?->hero_image ? asset('storage/' . $page->hero_image) : asset('storage/pages/locations.webp') }}'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative; padding: 120px 24px; text-align: center; margin-bottom: 40px; border-top: 3px solid #c8a96e;">
 
     <div style="position: absolute; inset: 0; background-color: rgba(74, 94, 58, 0.62);"></div>
 
     <div style="position: relative; z-index: 1;">
         <p style="color: #c8a96e; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 12px;">
-            Find Us
+            {{ $extra['eyebrow'] ?? 'Find Us' }}
         </p>
         <h1 style="color: #ffffff; font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; font-family: serif; margin-bottom: 16px;">
-            Our Locations
+            {{ $extra['hero_heading'] ?? 'Our Locations' }}
         </h1>
         <p style="color: rgba(255,255,255,0.85); font-size: 1.05rem; max-width: 520px; margin: 0 auto; line-height: 1.7;">
-            Serving Central Texas with two convenient locations — come visit us today.
+            {{ $extra['hero_subtext'] ?? 'Serving Central Texas with two convenient locations — come visit us today.' }}
         </p>
     </div>
 
@@ -106,25 +110,23 @@
     </div>
 
     {{-- Bottom CTA --}}
-    <div style="margin-top: 40px; background-color: #4a5e3a; border-radius: 12px; padding: 48px 32px; text-align: center;">
-        <p style="color: #c8a96e; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 12px;">
-            Get In Touch
-        </p>
-        <h3 style="color: #ffffff; font-size: 1.8rem; font-weight: 700; font-family: serif; margin-bottom: 14px;">
-            Not Sure Which Location to Visit?
-        </h3>
-        <p style="color: rgba(255,255,255,0.75); font-size: 0.95rem; margin-bottom: 28px; max-width: 440px; margin-left: auto; margin-right: auto; line-height: 1.7;">
-            Our team is happy to help you find the right location and guide you through the process.
-        </p>
-            <a
-            href="/contact"
-            style="display: inline-block; background-color: #c8a96e; color: #2d2d2d; padding: 14px 32px; border-radius: 6px; font-size: 0.9rem; font-weight: 700; text-decoration: none; letter-spacing: 0.05em; text-transform: uppercase;"
-            onmouseover="this.style.backgroundColor='#b8945a'"
-            onmouseout="this.style.backgroundColor='#c8a96e'"
-        >
-            Contact Us
-        </a>
-    </div>
+<div style="margin-top: 40px; background-color: #4a5e3a; border-radius: 12px; padding: 48px 32px; text-align: center;">
+    <p style="color: #c8a96e; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 12px;">
+        {{ $extra['bottom_cta_eyebrow'] ?? 'Get In Touch' }}
+    </p>
+    <h3 style="color: #ffffff; font-size: 1.8rem; font-weight: 700; font-family: serif; margin-bottom: 14px;">
+        {{ $extra['bottom_cta_heading'] ?? 'Not Sure Which Location to Visit?' }}
+    </h3>
+    <p style="color: rgba(255,255,255,0.75); font-size: 0.95rem; margin-bottom: 28px; max-width: 440px; margin-left: auto; margin-right: auto; line-height: 1.7;">
+        {{ $extra['bottom_cta_body'] ?? 'Our team is happy to help you find the right location and guide you through the process.' }}
+    </p>
+    <a href="{{ url($extra['bottom_cta_url'] ?? '/contact') }}"
+        style="display: inline-block; background-color: #c8a96e; color: #2d2d2d; padding: 14px 32px; border-radius: 6px; font-size: 0.9rem; font-weight: 700; text-decoration: none; letter-spacing: 0.05em; text-transform: uppercase;"
+        onmouseover="this.style.backgroundColor='#b8945a'"
+        onmouseout="this.style.backgroundColor='#c8a96e'">
+        {{ $extra['bottom_cta_label'] ?? 'Contact Us' }}
+    </a>
+</div>
 
 </div>
 

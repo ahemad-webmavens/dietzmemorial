@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Filament\Resources\PageSections;
 
 use App\Filament\Resources\PageSections\Pages\CreatePageSection;
@@ -22,6 +21,11 @@ class PageSectionResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'type';
 
+    // public static function shouldRegisterNavigation(): bool
+    // {
+    //     return false;
+    // }
+
     public static function form(Schema $schema): Schema
     {
         return PageSectionForm::configure($schema);
@@ -42,9 +46,9 @@ class PageSectionResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => ListPageSections::route('/'),
+            'index'  => ListPageSections::route('/'),
             'create' => CreatePageSection::route('/create'),
-            'edit' => EditPageSection::route('/{record}/edit'),
+            'edit'   => EditPageSection::route('/{record}/edit'),
         ];
     }
 }

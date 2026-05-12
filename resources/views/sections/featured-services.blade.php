@@ -1,5 +1,7 @@
 @php
     $items = $section->items->where('is_active', true);
+    $content = $section->content ?? [];
+    $heading   = $content['heading']    ?? 'Crafting Meaningful Memorials For Texas Families';
 @endphp
 
 <section class="py-12 md:py-16 lg:py-20 bg-[#CAD0B6]">
@@ -11,7 +13,7 @@
                 Our Services
             </p>
             <h2 class="text-2xl md:text-4xl font-light text-[#2f3d24]">
-                Crafted Memorials With Meaning
+                  {{ $heading }}
             </h2>
         </div>
 

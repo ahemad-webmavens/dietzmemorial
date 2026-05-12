@@ -16,6 +16,7 @@ class ServiceController extends Controller
 
         return view('services.index', [
             'services'       => $services,
+            'page'           => $page,
             'seoTitle'       => $page?->meta_title ?: 'Our Services | ' . (setting('site_name') ?? 'Dietz Memorial'),
             'seoDescription' => $page?->meta_description ?: 'Explore our full range of memorial services.',
             'seoImage'       => $page?->hero_image ?? null,

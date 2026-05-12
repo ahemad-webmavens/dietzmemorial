@@ -1,6 +1,12 @@
 @php
     $locations = \App\Models\Location::where('is_active', true)->get();
+    $items = $section->items->where('is_active', true);
+    $content = $section->content ?? [];
+    $heading   = $content['heading']    ?? 'Crafting Meaningful Memorials For Texas Families';
+    $subheading= $content['subheading'] ?? 'Beautiful granite memorials crafted with care';
+
 @endphp
+
 
 <section class="py-12 md:py-16 lg:py-20 bg-[#f8f6f1]">
 
@@ -14,12 +20,11 @@
             </p>
 
             <h2 class="text-2xl md:text-4xl font-light text-[#2f3d24] mb-6">
-                Proudly Serving Families Across Central Texas
+                {{ $heading }}
             </h2>
 
             <p class="max-w-3xl mx-auto text-gray-600 leading-relaxed">
-                Visit one of our memorial locations to explore custom granite,
-                bronze, cremation, and family memorial options with compassionate guidance.
+                {{ $subheading }}
             </p>
 
         </div>

@@ -17,14 +17,14 @@ class PageSectionItemForm
             ->components([
 
                 Select::make('page_section_id')
-                    ->relationship('section', 'type')
+                    ->relationship('section', 'type', fn($query) => $query->where('type', '!=', 'locations'))
                     ->required()
                     ->live(),
 
                 TextInput::make('title')
                     ->visible(fn($get) => self::sectionTypeAllows(
                         $get,
-                        ['featured_services', 'story', 'testimonials', 'value_cta']
+                        ['featured_services', 'story', 'testimonials', 'value_cta', 'hero']
                     )),
 
                 Textarea::make('description')
@@ -74,7 +74,13 @@ class PageSectionItemForm
                     )),
 
                 Toggle::make('is_active')
-                    ->default(true),
+                    ->default(true)
+                    ->inline(false)
+                    ->label('Is Active')
+                    ->columnSpan(1)
+                    ->extraFieldWrapperAttributes([
+                        'style' => 'padding-top: 10px;',
+                    ]),
 
             ]);
     }

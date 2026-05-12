@@ -20,12 +20,9 @@ class MemorialGuidesTable
 
                 TextColumn::make('slug'),
 
-                TextColumn::make('order'),
-
                 IconColumn::make('is_active')
                     ->boolean(),
 
-            ])
-            ->defaultSort('order');
+            ]);
     }
 }

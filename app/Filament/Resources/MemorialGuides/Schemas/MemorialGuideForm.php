@@ -12,19 +12,22 @@ class MemorialGuideForm
     public static function configure(Schema $schema): Schema
     {
         return $schema
+            ->columns(2)
             ->components([
 
                 TextInput::make('title')
                     ->required()
-                    ->maxLength(255),
+                    ->maxLength(255)
+                    ->columnSpan(1),
 
                 TextInput::make('slug')
                     ->required()
-                    ->unique(ignoreRecord: true),
+                    ->unique(ignoreRecord: true)
+                    ->columnSpan(1),
 
                 Textarea::make('content')
-                    ->rows(25)
-                    ->columnSpanFull(),
+                    ->rows(10)
+                    ->columnSpan(1),
 
                 FileUpload::make('featured_image')
                     ->image()
@@ -33,14 +36,14 @@ class MemorialGuideForm
                     ->imageResizeMode('cover')
                     ->imageCropAspectRatio('16:9')
                     ->imageResizeTargetWidth('1600')
-                    ->imageResizeTargetHeight('900'),
-
-                TextInput::make('order')
-                    ->numeric()
-                    ->default(0),
+                    ->imageResizeTargetHeight('900')
+                    ->columnSpan(1),
 
                 Toggle::make('is_active')
-                    ->default(true),
+                    ->default(true)
+                    ->inline(false)
+                    ->label('Is Active')
+                    ->columnSpan(2),
 
             ]);
     }

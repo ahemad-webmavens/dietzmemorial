@@ -15,10 +15,12 @@ class Page extends Model
         'hero_image',
         'is_active',
         'extra',
+        'extra_data',
     ];
 
     protected $casts = [
-        'extra' => 'array',
+        'extra'      => 'array',
+        'extra_data' => 'array',
     ];
 
     public function sections()

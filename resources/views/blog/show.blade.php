@@ -47,9 +47,18 @@
         {{-- Body content --}}
         <div style="max-width: 820px; margin: 32px auto 0; padding: 0 24px;">
             <div style="background: #ffffff; border-radius: 12px; padding: 40px 48px; box-shadow: 0 2px 12px rgba(0,0,0,0.06);">
-                <div style="color: #3d3d3d; font-size: 1.05rem; line-height: 1.9; font-family: Georgia, serif;">
-                    {!! nl2br(e($post->body)) !!}
-                </div>
+               <div class="prose prose-lg max-w-none
+                prose-headings:text-[#2d2d2d]
+                prose-p:text-[#3d3d3d]
+                prose-a:text-[#4a5e3a]
+                prose-strong:text-[#2d2d2d]
+                prose-img:rounded-xl
+                prose-img:shadow-lg">
+
+                {!! html_entity_decode($post->body) !!}
+
+
+            </div>
             </div>
 
             {{-- Bottom nav --}}

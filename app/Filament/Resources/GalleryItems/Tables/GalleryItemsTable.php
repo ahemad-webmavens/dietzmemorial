@@ -13,8 +13,6 @@ class GalleryItemsTable
             ->columns([
                 ImageColumn::make('image'),
                 TextColumn::make('category'),
-                TextColumn::make('order')->sortable(),
-            ])
-            ->defaultSort('order');
+            ]);
     }
 }
